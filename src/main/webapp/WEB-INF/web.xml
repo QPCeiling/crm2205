@@ -13,6 +13,15 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+
+    <context-param>
+        <param-name>log4jConfig</param-name>
+        <param-value>classpath:log4j2.xml</param-value>
+    </context-param>
+    <listener>
+        <listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class>
+    </listener>
+
     <!-- spring字符过滤器 -->
     <filter>
         <filter-name>encodingFilter</filter-name>
