@@ -1,5 +1,7 @@
 package com.bjpowernode.crm.commons.utils;
 
+import cn.hutool.crypto.digest.DigestUtil;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -28,6 +30,14 @@ public class MD5Util {
 			e.printStackTrace();
 			return "";
 		}
+	}
+
+	public static void main(String[] args) {
+		String md5Hex = DigestUtil.md5Hex("ls", "UTF-8");
+		String confusionPwd = "oweigwoeigh68546" + md5Hex + "bjpwernode";
+		System.out.println(confusionPwd);
+		String saltPassword = DigestUtil.md5Hex(confusionPwd, "UTF-8");
+		System.out.println(saltPassword);
 	}
 	
 }

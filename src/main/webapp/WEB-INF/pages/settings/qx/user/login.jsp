@@ -14,7 +14,35 @@
 $(function () {
 	//给"登录"按钮添加单击事件
 	$("#loginBtn").click(function () {
-		window.location.href="workbench/index.do";
+		//获取账号和密码
+		var loginAct = $.trim($("#loginAct").val());
+		if(!loginAct){
+			$("#msg").html("账号不能为空");
+			return;
+		}
+		var loginPwd = $.trim($("#loginPwd").val());
+		if(!loginPwd){
+			$("#msg").html("密码不能为空");
+			return;
+		}
+
+		//发起登录请求 异步 ajax
+		$.ajax({
+			url:"settings/qx/user/login.do",
+			type:"post",
+			data:{
+				loginAct:loginAct,
+				loginPwd:loginPwd,
+			},
+			success:function (data) {
+				if(data.code == 1000){
+					window.location.href="workbench/index.do";
+				}else {
+					$("#msg").html(data.message);
+				}
+			}
+		})
+
 	});
 });
 </script>
